@@ -21,7 +21,6 @@
   <!-- Search Form -->
   <app-flight-search-form
     [searching]="state().loading"
-    [restoredParams]="restoredParams()"
     (searchRequested)="onSearchRequested($event)"
   />
 
