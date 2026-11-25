@@ -101,6 +101,6 @@ export class FlightSearchComponent {
   }
 
   protected onFlightSelected(flight: Flight): void {
-    this.router.navigate([`/flights/${flight.id}`]);
+    this.router.navigate([`/search/flights/${flight.id}`]);
   }
 }
