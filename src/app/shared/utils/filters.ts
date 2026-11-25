@@ -6,7 +6,7 @@ export const DEFAULT_FILTERS: FlightFilters = {
   priceMax: 1000,
   stops: [],
   airlines: [],
-  currency: 'USD',
+  currency: 'INR',
 };
 
 /**

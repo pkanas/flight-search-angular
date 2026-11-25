@@ -13,7 +13,7 @@ describe('applyFilters', () => {
       arrivalTime: '10:00',
       durationMinutes: 120,
       price: 100,
-      currency: 'USD',
+      currency: 'INR',
       stops: 0,
     },
     {
@@ -26,7 +26,7 @@ describe('applyFilters', () => {
       arrivalTime: '12:00',
       durationMinutes: 120,
       price: 250,
-      currency: 'USD',
+      currency: 'INR',
       stops: 1,
     },
   ];
