@@ -19,10 +19,7 @@ const AIRLINE_COLORS: Record<string, string> = {
   'Singapore Airlines': '#F7E44D',
 };
 
-/**
- * Reusable display of a single flight. Used by the search results list and by
- * the flight detail page (with extra details there).
- */
+
 @Component({
   selector: 'app-flight-card',
   standalone: true,
@@ -32,10 +29,8 @@ const AIRLINE_COLORS: Record<string, string> = {
 })
 export class FlightCardComponent {
   readonly flight = input.required<Flight>();
-  /** Emitted when the user clicks the card. */
   readonly flightSelected = output<Flight>();
 
-  /** Two-letter chip shown on the card (airline name initials). */
   protected get logoCode(): string {
     return this.flight()
       .airline.split(/\s+/)
@@ -45,7 +40,6 @@ export class FlightCardComponent {
       .toUpperCase();
   }
 
-  /** Airline-specific brand color for the logo badge. */
   protected get airlineColor(): string {
     return AIRLINE_COLORS[this.flight().airline] ?? '#2563eb';
   }

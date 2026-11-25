@@ -1,11 +1,10 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, effect, inject, input, output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AbstractControl,
   FormBuilder,
   FormGroup,
   ValidationErrors,
-  ValidatorFn,
   Validators,
 } from '@angular/forms';
 
@@ -22,11 +21,7 @@ function returnDateAfterDeparture(group: AbstractControl): ValidationErrors | nu
   return returnDate <= departure ? { returnBeforeDeparture: true } : null;
 }
 
-/**
- * The flight search form: From, To, Departure date, Return date and number of
- * passengers, all with Reactive Forms validation.
- * Emits `searchRequested` with the validated params when the user submits.
- */
+
 @Component({
   selector: 'app-flight-search-form',
   standalone: true,
@@ -36,10 +31,24 @@ function returnDateAfterDeparture(group: AbstractControl): ValidationErrors | nu
 })
 export class FlightSearchFormComponent {
   private readonly formBuilder = inject(FormBuilder);
-
-  /** Bound by the parent page to the search stream's loading state. */
   readonly searching = input(false);
+  readonly initialParams = input<FlightSearchParams | null>(null);
   readonly searchRequested = output<FlightSearchParams>();
+
+  constructor() {
+    effect(() => {
+      const params = this.initialParams();
+      if (params) {
+        this.searchForm.patchValue({
+          origin: params.origin,
+          destination: params.destination,
+          departureDate: params.departureDate,
+          returnDate: params.returnDate ?? '',
+          passengers: params.passengers,
+        });
+      }
+    });
+  }
 
   readonly searchForm: FormGroup = this.formBuilder.group(
     {
@@ -68,7 +77,7 @@ export class FlightSearchFormComponent {
     this.searchRequested.emit(this.searchForm.getRawValue() as FlightSearchParams);
   }
 
-  /** True when the given field is touched and invalid (used by the template). */
+
   protected invalid(name: string): boolean {
     const control = this.searchForm.get(name);
     return control?.touched === true && control.invalid;

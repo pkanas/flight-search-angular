@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-/** Simple, reusable loading indicator (spinner). */
 @Component({
   selector: 'app-loader',
   standalone: true,

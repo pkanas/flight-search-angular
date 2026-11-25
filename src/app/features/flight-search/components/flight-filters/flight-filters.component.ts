@@ -3,10 +3,7 @@ import { FlightFilters } from '../../../../shared/models/flight.model';
 import { AIRLINES } from '../../data/airlines';
 import { DEFAULT_FILTERS } from '../../../../shared/utils/filters';
 
-/**
- * Filters applied to the search results: price range, number of stops and
- * airline. Emits a new `FlightFilters` on every change.
- */
+
 @Component({
   selector: 'app-flight-filters',
   standalone: true,
@@ -17,12 +14,10 @@ export class FlightFiltersComponent {
   readonly filters = input.required<FlightFilters>();
   readonly filtersChange = output<FlightFilters>();
 
-  /** Options for the "number of stops" checkboxes. */
   protected readonly stopOptions = [0, 1, 2, 3];
-  /** airlines selectable in the UI (from the mock data). */
   protected readonly airlines = AIRLINES;
 
-  /** Labels for stop options matching the reference design. */
+
   protected readonly stopLabels: Record<number, string> = {
     0: 'Non-stop',
     1: '1 Stop',
@@ -30,10 +25,8 @@ export class FlightFiltersComponent {
     3: '3+ Stops',
   };
 
-  /** Search term for airline filter. */
   protected airlineSearchTerm = '';
 
-  /** Airlines filtered by the search term. */
   protected get filteredAirlines(): string[] {
     if (!this.airlineSearchTerm) {
       return this.airlines;

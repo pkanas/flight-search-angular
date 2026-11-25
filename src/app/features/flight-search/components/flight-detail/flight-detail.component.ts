@@ -40,10 +40,7 @@ const AIRLINE_COLORS: Record<string, string> = {
   'Singapore Airlines': '#F7E44D',
 };
 
-/**
- * Details page for a single flight: shows the flight summary plus the extra
- * details available (stops, aircraft, baggage allowance, seats).
- */
+
 @Component({
   selector: 'app-flight-detail',
   standalone: true,
@@ -80,17 +77,17 @@ export class FlightDetailComponent {
     });
   }
 
-  /** The loaded flight; only read when not loading and without an error. */
+  
   protected detail(): Flight {
     return this.flight() as Flight;
   }
 
-  /** City and country label for an IATA airport code. */
+
   protected airportLocation(code: string): string {
     return AIRPORT_LOCATIONS[code] ?? code;
   }
 
-  /** Human-readable stops label. */
+
   protected stopsLabel(stops: number): string {
     if (stops === 0) {
       return 'Non-stop';
@@ -108,12 +105,11 @@ export class FlightDetailComponent {
       .toUpperCase();
   }
 
-  /** Brand color for the fallback airline badge. */
+
   protected airlineColor(airline: string): string {
     return AIRLINE_COLORS[airline] ?? '#2563eb';
   }
 
-  /** Navigates back to the flight search page. */
   protected goBack(): void {
     this.router.navigate([`/search`]);
   }

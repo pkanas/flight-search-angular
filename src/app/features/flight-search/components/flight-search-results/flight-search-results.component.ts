@@ -4,10 +4,6 @@ import { Flight } from '../../../../shared/models/flight.model';
 import { LoaderComponent } from '../../../../shared/components/loader/loader.component';
 import { FlightCardComponent } from '../../../../shared/components/flight-card/flight-card.component';
 
-/**
- * Displays the flight search results (or loading/error/empty states).
- * Clicking a flight emits it so the page can navigate to its details.
- */
 @Component({
   selector: 'app-flight-search-results',
   standalone: true,
