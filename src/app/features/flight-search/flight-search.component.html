@@ -1,0 +1,17 @@
+<div class="flight-search-page">
+  <h1 class="flight-search-page__title">Find the best flights</h1>
+
+  <app-flight-search-form
+    [searching]="state().loading"
+    (searchRequested)="onSearchRequested($event)"
+  />
+
+  <app-flight-filters [filters]="filters()" (filtersChange)="filters.set($event)" />
+
+  <app-flight-search-results
+    [flights]="state().flights"
+    [loading]="state().loading"
+    [error]="state().error"
+    (flightSelected)="onFlightSelected($event)"
+  />
+</div>

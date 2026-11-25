@@ -6,11 +6,15 @@ import {
 } from '@angular/ssr/node';
 import express from 'express';
 import { join } from 'node:path';
+import { mockFlights } from './app/features/flight-search/data/mock-flights';
 
 const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
-const angularApp = new AngularNodeAppEngine();
+const angularApp = new AngularNodeAppEngine({
+  // Allow local development hosts (localhost, 127.0.0.1).
+  allowedHosts: ['localhost', '127.0.0.1'],
+});
 
 /**
  * Example Express Rest API endpoints can be defined here.
@@ -23,6 +27,31 @@ const angularApp = new AngularNodeAppEngine();
  * });
  * ```
  */
+
+/**
+ * Mock REST API used by the flight search feature.
+ * `ng serve` and the production server both expose these endpoints.
+ */
+app.get('/api/flights', (req, res) => {
+  const origin = typeof req.query['origin'] === 'string' ? req.query['origin'] : '';
+  const destination =
+    typeof req.query['destination'] === 'string' ? req.query['destination'] : '';
+
+  const flights = mockFlights.filter(
+    (flight) => flight.origin === origin && flight.destination === destination
+  );
+
+  res.json(flights);
+});
+
+app.get('/api/flights/:id', (req, res) => {
+  const flight = mockFlights.find((f) => f.id === req.params['id']);
+  if (!flight) {
+    res.status(404).json({ error: 'Flight not found' });
+    return;
+  }
+  res.json(flight);
+});
 
 /**
  * Serve static files from /browser

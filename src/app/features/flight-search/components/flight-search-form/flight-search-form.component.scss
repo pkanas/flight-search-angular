@@ -1,0 +1,75 @@
+:host {
+  display: block;
+}
+
+.flight-search-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.25rem;
+  background: var(--fs-surface);
+  border: 1px solid var(--fs-border);
+  border-radius: var(--fs-radius);
+  box-shadow: var(--fs-card-shadow);
+}
+
+.flight-search-form__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 0.75rem;
+}
+
+.flight-search-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.flight-search-form__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--fs-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.flight-search-form__input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5rem 0.65rem;
+  border: 1px solid var(--fs-border);
+  border-radius: var(--fs-radius);
+  font: inherit;
+  color: var(--fs-text);
+  background: #fff;
+
+  &:focus {
+    outline: 2px solid var(--fs-primary);
+    outline-offset: 1px;
+  }
+}
+
+.flight-search-form__error {
+  font-size: 0.75rem;
+  color: var(--fs-error);
+}
+
+.flight-search-form__button {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.6rem 1.25rem;
+  background: var(--fs-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--fs-radius);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: var(--fs-primary-dark);
+  }
+}

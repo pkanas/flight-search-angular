@@ -1,0 +1,64 @@
+:host {
+  display: block;
+}
+
+.flight-filters {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--fs-surface);
+  border: 1px solid var(--fs-border);
+  border-radius: var(--fs-radius);
+  box-shadow: var(--fs-card-shadow);
+}
+
+.flight-filters__title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--fs-text);
+}
+
+.flight-filters__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.75rem;
+}
+
+.flight-filters__field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.flight-filters__label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--fs-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.flight-filters__value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--fs-primary);
+}
+
+.flight-filters__checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  max-height: 130px;
+  overflow-y: auto;
+}
+
+.flight-filters__checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--fs-text);
+  cursor: pointer;
+}

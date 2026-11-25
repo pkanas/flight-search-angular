@@ -1,0 +1,40 @@
+:host {
+  display: block;
+}
+
+.flight-search-results {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.flight-search-results__header {
+  padding: 0.5rem 0.25rem;
+}
+
+.flight-search-results__count {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--fs-muted);
+}
+
+.flight-search-results__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  max-width: 720px;
+}
+
+.flight-search-results__error,
+.flight-search-results__empty {
+  margin: 0;
+  padding: 1rem;
+  color: var(--fs-error);
+  background: var(--fs-surface);
+  border: 1px solid var(--fs-border);
+  border-radius: var(--fs-radius);
+}
+
+.flight-search-results__empty {
+  color: var(--fs-muted);
+}

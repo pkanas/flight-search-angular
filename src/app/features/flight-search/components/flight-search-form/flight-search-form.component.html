@@ -1,0 +1,86 @@
+<form class="flight-search-form" [formGroup]="searchForm" (ngSubmit)="onSearch()" aria-label="Flight search">
+  <div class="flight-search-form__grid">
+    <div class="flight-search-form__field">
+      <label for="origin" class="flight-search-form__label">From</label>
+      <input
+        id="origin"
+        class="flight-search-form__input"
+        formControlName="origin"
+        type="text"
+        placeholder="JFK"
+        autocomplete="off"
+        aria-label="From airport code"
+      />
+      @if (invalid('origin')) {
+        <span class="flight-search-form__error" role="alert">{{ errorMessage('origin') }}</span>
+      }
+    </div>
+
+    <div class="flight-search-form__field">
+      <label for="destination" class="flight-search-form__label">To</label>
+      <input
+        id="destination"
+        class="flight-search-form__input"
+        formControlName="destination"
+        type="text"
+        placeholder="LAX"
+        autocomplete="off"
+        aria-label="To airport code"
+      />
+      @if (invalid('destination')) {
+        <span class="flight-search-form__error" role="alert">{{ errorMessage('destination') }}</span>
+      }
+    </div>
+
+    <div class="flight-search-form__field">
+      <label for="departureDate" class="flight-search-form__label">Departure date</label>
+      <input
+        id="departureDate"
+        class="flight-search-form__input"
+        formControlName="departureDate"
+        type="date"
+        aria-label="Departure date"
+      />
+      @if (invalid('departureDate')) {
+        <span class="flight-search-form__error" role="alert">{{ errorMessage('departureDate') }}</span>
+      }
+    </div>
+
+    <div class="flight-search-form__field">
+      <label for="returnDate" class="flight-search-form__label">Return date (optional)</label>
+      <input
+        id="returnDate"
+        class="flight-search-form__input"
+        formControlName="returnDate"
+        type="date"
+        aria-label="Return date"
+      />
+    </div>
+
+    <div class="flight-search-form__field">
+      <label for="passengers" class="flight-search-form__label">Number of passengers</label>
+      <input
+        id="passengers"
+        class="flight-search-form__input"
+        formControlName="passengers"
+        type="number"
+        min="1"
+        max="9"
+        aria-label="Number of passengers"
+      />
+      @if (invalid('passengers')) {
+        <span class="flight-search-form__error" role="alert">{{ errorMessage('passengers') }}</span>
+      }
+    </div>
+  </div>
+
+  <button type="submit" class="flight-search-form__button" aria-label="Search flights">
+    {{ searching() ? 'Searching…' : 'Search flights' }}
+  </button>
+
+  @if (searchForm.hasError('returnBeforeDeparture')) {
+    <span class="flight-search-form__error" role="alert">
+      Return date must be after the departure date.
+    </span>
+  }
+</form>

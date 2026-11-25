@@ -1,0 +1,67 @@
+<div class="flight-filters">
+  <h3 class="flight-filters__title">Filters</h3>
+
+  <div class="flight-filters__grid">
+    <div class="flight-filters__field">
+      <label for="price-min" class="flight-filters__label">Min price</label>
+      <input
+        id="price-min"
+        type="range"
+        min="0"
+        max="1000"
+        step="25"
+        [value]="filters().priceMin"
+        (input)="onPriceMin($event)"
+        aria-label="Minimum price"
+      />
+      <span class="flight-filters__value">{{ filters().priceMin }}</span>
+    </div>
+
+    <div class="flight-filters__field">
+      <label for="price-max" class="flight-filters__label">Max price</label>
+      <input
+        id="price-max"
+        type="range"
+        min="0"
+        max="1000"
+        step="25"
+        [value]="filters().priceMax"
+        (input)="onPriceMax($event)"
+        aria-label="Maximum price"
+      />
+      <span class="flight-filters__value">{{ filters().priceMax }}</span>
+    </div>
+
+    <div class="flight-filters__field">
+      <span class="flight-filters__label">Number of stops</span>
+      <div class="flight-filters__checkboxes">
+        @for (stops of stopOptions; track stops) {
+          <label class="flight-filters__checkbox-label">
+            <input
+              type="checkbox"
+              [checked]="filters().stops.includes(stops)"
+              (change)="onStopsToggle(stops, $any($event.target).checked)"
+            />
+            {{ stops }} stop(s)
+          </label>
+        }
+      </div>
+    </div>
+
+    <div class="flight-filters__field">
+      <span class="flight-filters__label">Airline</span>
+      <div class="flight-filters__checkboxes">
+        @for (airline of airlines; track airline) {
+          <label class="flight-filters__checkbox-label">
+            <input
+              type="checkbox"
+              [checked]="filters().airlines.includes(airline)"
+              (change)="onAirlineToggle(airline, $any($event.target).checked)"
+            />
+            {{ airline }}
+          </label>
+        }
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div
+  class="flight-card"
+  role="button"
+  tabindex="0"
+  (click)="onSelect()"
+  (keydown.enter)="onSelect()"
+  (keydown.space)="onSelect()"
+>
+  <header class="flight-card__header">
+    <span class="flight-card__airline">{{ flight().airline }}</span>
+    <span class="flight-card__number">{{ flight().flightNumber }}</span>
+    <span class="flight-card__price">{{ flight().price | currency:flight().currency }}</span>
+  </header>
+  <div class="flight-card__route">
+    <span class="flight-card__code">{{ flight().origin }}</span>
+    <span class="flight-card__arrow">→</span>
+    <span class="flight-card__code">{{ flight().destination }}</span>
+  </div>
+  <div class="flight-card__details">
+    <span class="flight-card__time">{{ flight().departureTime }} – {{ flight().arrivalTime }}</span>
+    <span class="flight-card__duration">{{ flight().durationMinutes | duration }}</span>
+    <span class="flight-card__stops">Stops: {{ flight().stops }}</span>
+  </div>
+</div>

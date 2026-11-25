@@ -1,0 +1,55 @@
+@if (loading()) {
+  <app-loader />
+} @else if (error()) {
+  <p class="flight-detail__error" role="alert">{{ error() }}</p>
+} @else {
+  <div class="flight-detail">
+    <header class="flight-detail__header">
+      <h1 class="flight-detail__airline">{{ detail().airline }}</h1>
+      <span class="flight-detail__number">{{ detail().flightNumber }}</span>
+      <span class="flight-detail__price">{{ detail().price | currency:detail().currency }}</span>
+    </header>
+
+    <div class="flight-detail__route">
+      <span class="flight-detail__code">{{ detail().origin }}</span>
+      <span class="flight-detail__arrow">→</span>
+      <span class="flight-detail__code">{{ detail().destination }}</span>
+    </div>
+
+    <div class="flight-detail__times">
+      <span>Departure: <strong>{{ detail().departureTime }}</strong></span>
+      <span>Arrival: <strong>{{ detail().arrivalTime }}</strong></span>
+      <span>Duration: <strong>{{ detail().durationMinutes | duration }}</strong></span>
+      <span>Stops: <strong>{{ detail().stops }}</strong></span>
+    </div>
+
+    @if (detail().stopsDetails && detail().stopsDetails!.length > 0) {
+      <ul class="flight-detail__stop-details" aria-label="Stops details">
+        @for (detailItem of detail().stopsDetails!; track detailItem) {
+          <li>{{ detailItem }}</li>
+        }
+      </ul>
+    }
+
+    <dl class="flight-detail__meta">
+      @if (detail().aircraftType) {
+        <div class="flight-detail__meta-row">
+          <dt>Aircraft</dt>
+          <dd>{{ detail().aircraftType }}</dd>
+        </div>
+      }
+      @if (detail().baggageAllowance) {
+        <div class="flight-detail__meta-row">
+          <dt>Baggage allowance</dt>
+          <dd>{{ detail().baggageAllowance }}</dd>
+        </div>
+      }
+      @if (detail().seatsAvailable !== undefined) {
+        <div class="flight-detail__meta-row">
+          <dt>Seats available</dt>
+          <dd>{{ detail().seatsAvailable }}</dd>
+        </div>
+      }
+    </dl>
+  </div>
+}

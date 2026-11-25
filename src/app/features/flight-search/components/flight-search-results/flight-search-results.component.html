@@ -1,0 +1,18 @@
+<section class="flight-search-results" aria-label="Flight search results">
+  @if (loading()) {
+    <app-loader />
+  } @else if (error()) {
+    <p class="flight-search-results__error" role="alert">{{ error() }}</p>
+  } @else if (flights().length > 0) {
+    <div class="flight-search-results__header">
+      <span class="flight-search-results__count">{{ flights().length }} flight(s) found</span>
+    </div>
+    <div class="flight-search-results__list" role="list">
+      @for (flight of flights(); track flight.id) {
+        <app-flight-card [flight]="flight" (flightSelected)="flightSelected.emit($event)" />
+      }
+    </div>
+  } @else {
+    <p class="flight-search-results__empty">No flights found for these dates and filters.</p>
+  }
+</section>
