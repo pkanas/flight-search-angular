@@ -50,12 +50,29 @@ export class FlightSearchComponent {
   private readonly searchState$ = this.searchTriggers$.pipe(
     switchMap((params) =>
       this.flightSearchService.searchFlights(params).pipe(
-        map((flights): FlightSearchState => ({ flights, loading: false, error: null })),
-        startWith<FlightSearchState>({ flights: [], loading: true, error: null })
-      )
+        map(
+          (flights): FlightSearchState => ({
+            flights,
+            loading: false,
+            error: null,
+            searchParams: params,
+          }),
+        ),
+        startWith<FlightSearchState>({
+          flights: [],
+          loading: true,
+          error: null,
+          searchParams: params,
+        })
+      ),
     ),
     catchError((): Observable<FlightSearchState> =>
-      of({ flights: [], loading: false, error: 'Unable to load flights. Please try again.' })
+      of({
+        flights: [],
+        loading: false,
+        error: 'Unable to load flights. Please try again.',
+        searchParams: null,
+      })
     ),
     shareReplay({ bufferSize: 1, refCount: true })
   );
@@ -70,7 +87,12 @@ export class FlightSearchComponent {
       }))
     ),
     {
-      initialValue: { flights: [] as Flight[], loading: false, error: null as string | null },
+      initialValue: {
+        flights: [] as Flight[],
+        loading: false,
+        error: null as string | null,
+        searchParams: null as FlightSearchParams | null,
+      },
     }
   );
 

@@ -12,6 +12,8 @@
     [flights]="state().flights"
     [loading]="state().loading"
     [error]="state().error"
+    [departureDate]="state().searchParams?.departureDate ?? null"
+    [returnDate]="state().searchParams?.returnDate ?? null"
     (flightSelected)="onFlightSelected($event)"
   />
 </div>

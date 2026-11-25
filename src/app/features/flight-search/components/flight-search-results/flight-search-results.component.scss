@@ -18,6 +18,11 @@
   color: var(--fs-muted);
 }
 
+.flight-search-results__context {
+  font-weight: 400;
+  margin-left: 0.25rem;
+}
+
 .flight-search-results__list {
   display: flex;
   flex-direction: column;

@@ -18,4 +18,6 @@ export interface FlightSearchState {
   flights: Flight[];
   loading: boolean;
   error: string | null;
+  /** The search params of the latest (or in-flight) search, used for display. */
+  searchParams: FlightSearchParams | null;
 }

@@ -19,5 +19,15 @@ export class FlightSearchResultsComponent {
   readonly flights = input<Flight[]>([]);
   readonly loading = input(false);
   readonly error = input<string | null>(null);
+  readonly departureDate = input<string | null>(null);
+  readonly returnDate = input<string | null>(null);
   readonly flightSelected = output<Flight>();
+
+  protected get searchContext(): string {
+    const dates = [
+      this.departureDate() ? `Departure: ${this.departureDate()}` : null,
+      this.returnDate() ? `Return: ${this.returnDate()}` : null,
+    ].filter((part) => part !== null);
+    return dates.join(' · ');
+  }
 }
