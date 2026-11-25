@@ -1,19 +1,43 @@
 <div class="flight-search-page">
-  <h1 class="flight-search-page__title">Find the best flights</h1>
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="hero__content">
+      <h1 class="hero__title">Find the Best Flights</h1>
+      <p class="hero__subtitle">Search, compare and book flights at the best prices.</p>
+    </div>
+    <div class="hero__illustration" aria-hidden="true">
+      <svg viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20 70 Q60 20 100 40 T180 30" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" fill="none" stroke-dasharray="4 4"/>
+        <g transform="translate(160, 25) rotate(-20)">
+          <path d="M0 8 L-4 12 L-16 8 L-4 6 L-4 2 L-10 0 L-4 -1 L-4 -4 L0 -2 L4 -4 L4 -1 L10 0 L4 2 L4 6 L16 8 L4 12 Z" fill="rgba(255,255,255,0.9)"/>
+        </g>
+        <circle cx="30" cy="80" r="1.5" fill="rgba(255,255,255,0.3)"/>
+        <circle cx="80" cy="60" r="1" fill="rgba(255,255,255,0.2)"/>
+        <circle cx="140" cy="50" r="1.5" fill="rgba(255,255,255,0.3)"/>
+      </svg>
+    </div>
+  </section>
 
+  <!-- Search Form -->
   <app-flight-search-form
     [searching]="state().loading"
     (searchRequested)="onSearchRequested($event)"
   />
 
-  <app-flight-filters [filters]="filters()" (filtersChange)="filters.set($event)" />
-
-  <app-flight-search-results
-    [flights]="state().flights"
-    [loading]="state().loading"
-    [error]="state().error"
-    [departureDate]="state().searchParams?.departureDate ?? null"
-    [returnDate]="state().searchParams?.returnDate ?? null"
-    (flightSelected)="onFlightSelected($event)"
-  />
+  <!-- Results area: filters + results side by side -->
+  <div class="flight-search-page__results-area">
+    <aside class="flight-search-page__sidebar">
+      <app-flight-filters [filters]="filters()" (filtersChange)="filters.set($event)" />
+    </aside>
+    <div class="flight-search-page__content">
+      <app-flight-search-results
+        [flights]="state().flights"
+        [loading]="state().loading"
+        [error]="state().error"
+        [departureDate]="state().searchParams?.departureDate ?? null"
+        [returnDate]="state().searchParams?.returnDate ?? null"
+        (flightSelected)="onFlightSelected($event)"
+      />
+    </div>
+  </div>
 </div>

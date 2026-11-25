@@ -8,19 +8,57 @@
   gap: 0.75rem;
 }
 
+/* ─── Header ─── */
 .flight-search-results__header {
   display: flex;
-  align-items: baseline;
+  align-items: center;
+  justify-content: space-between;
   gap: 0.75rem;
-  padding: 0.5rem 0.25rem;
-  border-bottom: 1px solid var(--fs-border);
   padding-bottom: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .flight-search-results__count {
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 1.1rem;
+  font-weight: 500;
   color: var(--fs-text);
+
+  strong {
+    font-weight: 700;
+  }
+}
+
+.flight-search-results__sort {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.flight-search-results__sort-label {
+  font-size: 0.85rem;
+  color: var(--fs-muted);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.flight-search-results__sort-select {
+  padding: 0.4rem 2rem 0.4rem 0.75rem;
+  border: 1px solid var(--fs-border);
+  border-radius: var(--fs-radius);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--fs-text);
+  background: #fff url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9l6 6 6-6' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 0.5rem center;
+  background-size: 16px;
+  appearance: none;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+    border-color: var(--fs-primary);
+    box-shadow: var(--fs-focus-ring);
+  }
 }
 
 .flight-search-results__context {
@@ -28,37 +66,63 @@
   color: var(--fs-muted);
 }
 
+/* ─── Loading ─── */
 .flight-search-results__loading {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
-  padding: 2.5rem;
+  padding: 3rem;
   color: var(--fs-muted);
+  background: var(--fs-surface);
+  border-radius: var(--fs-radius-xl);
+  border: 1px solid var(--fs-border);
 }
 
+/* ─── List ─── */
 .flight-search-results__list {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
-  max-width: 720px;
 }
 
-.flight-search-results__error,
-.flight-search-results__empty {
+/* ─── Error / Empty ─── */
+.flight-search-results__error {
   margin: 0;
-  padding: 1.25rem;
-  border-radius: var(--fs-radius);
+  padding: 1.5rem;
+  border-radius: var(--fs-radius-xl);
+  text-align: center;
+  color: var(--fs-error);
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.flight-search-results__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 3rem 1.5rem;
+  border-radius: var(--fs-radius-xl);
   text-align: center;
   color: var(--fs-muted);
-}
-
-.flight-search-results__error {
-  color: var(--fs-error);
-}
-
-.flight-search-results__empty {
   border: 1px solid var(--fs-border);
   background: var(--fs-surface);
+
+  svg {
+    color: var(--fs-border);
+  }
+
+  p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--fs-text);
+  }
+
+  span {
+    font-size: 0.85rem;
+  }
 }

@@ -1,18 +1,30 @@
 /* Global design tokens for the flight search app — modern professional look. */
+
 :root {
   --fs-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --fs-radius: 0.625rem;
-  --fs-radius-lg: 1.25rem;
+  --fs-radius-lg: 1rem;
+  --fs-radius-xl: 1.25rem;
   --fs-primary: #2563eb;
+  --fs-primary-light: #3b82f6;
+  --fs-primary-lighter: #dbeafe;
   --fs-primary-dark: #1d4ed8;
   --fs-text: #111827;
   --fs-muted: #6b7280;
   --fs-border: #e5e7eb;
+  --fs-border-light: #f3f4f6;
   --fs-error: #dc2626;
   --fs-surface: #ffffff;
-  --fs-bg: #f9fafb;
-  --fs-card-shadow: 0 1px 3px rgba(17, 24, 39, 0.04), 0 8px 20px rgba(17, 24, 39, 0.06);
+  --fs-bg: #f0f4ff;
+  --fs-card-shadow: 0 1px 3px rgba(17, 24, 39, 0.04), 0 4px 16px rgba(17, 24, 39, 0.06);
+  --fs-card-shadow-hover: 0 4px 12px rgba(17, 24, 39, 0.08), 0 8px 24px rgba(17, 24, 39, 0.1);
   --fs-focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
@@ -27,4 +39,37 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Custom range slider styling */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--fs-border);
+  border-radius: 3px;
+  outline: none;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--fs-primary);
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  &::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--fs-primary);
+    cursor: pointer;
+    border: 2px solid #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  }
 }

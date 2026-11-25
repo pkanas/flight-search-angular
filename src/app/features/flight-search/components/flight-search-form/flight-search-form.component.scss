@@ -6,17 +6,65 @@
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  padding: 1.75rem;
+  padding: 1.5rem 2rem 2rem;
   background: var(--fs-surface);
   border: 1px solid var(--fs-border);
-  border-radius: var(--fs-radius-lg);
+  border-radius: var(--fs-radius-xl);
   box-shadow: var(--fs-card-shadow);
+  margin-top: -2rem;
+  position: relative;
+  z-index: 10;
 }
 
+/* ─── Trip Type Tabs ─── */
+.flight-search-form__tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.flight-search-form__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 2rem;
+  border: 1px solid var(--fs-border);
+  background: transparent;
+  font-family: var(--fs-font);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--fs-muted);
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  &:hover {
+    border-color: var(--fs-primary-light);
+    color: var(--fs-primary);
+  }
+
+  &--active {
+    background: var(--fs-primary);
+    color: #fff;
+    border-color: var(--fs-primary);
+
+    &:hover {
+      background: var(--fs-primary-dark);
+      border-color: var(--fs-primary-dark);
+      color: #fff;
+    }
+  }
+}
+
+/* ─── Fields Grid ─── */
 .flight-search-form__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
 }
 
 .flight-search-form__field {
@@ -26,22 +74,36 @@
 }
 
 .flight-search-form__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
   font-size: 0.75rem;
   font-weight: 600;
   color: var(--fs-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.02em;
+
+  svg {
+    color: var(--fs-muted);
+    flex-shrink: 0;
+  }
 }
 
 .flight-search-form__input {
   width: 100%;
   box-sizing: border-box;
-  padding: 0.7rem 0.875rem;
+  padding: 0.65rem 0.875rem;
   border: 1px solid var(--fs-border);
   border-radius: var(--fs-radius);
   font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
   color: var(--fs-text);
   background: #fff;
+
+  &::placeholder {
+    color: var(--fs-muted);
+    font-weight: 400;
+  }
 
   &:focus {
     outline: none;
@@ -51,30 +113,62 @@
 }
 
 .flight-search-form__error {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   color: var(--fs-error);
+  font-weight: 500;
 }
 
+/* ─── Search Button ─── */
 .flight-search-form__button {
-  align-self: flex-start;
+  align-self: flex-end;
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
+  padding: 0.75rem 2rem;
   background: var(--fs-primary);
   color: #fff;
   border: none;
   border-radius: var(--fs-radius);
   font: inherit;
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s ease, transform 0.1s ease;
+  transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
 
   &:hover {
     background: var(--fs-primary-dark);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
   }
 
   &:active {
     transform: scale(0.98);
+  }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .flight-search-form {
+    padding: 1.25rem 1.25rem 1.5rem;
+    margin-top: -1.5rem;
+  }
+
+  .flight-search-form__tabs {
+    flex-wrap: wrap;
+  }
+
+  .flight-search-form__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .flight-search-form__button {
+    align-self: stretch;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .flight-search-form__grid {
+    grid-template-columns: 1fr;
   }
 }

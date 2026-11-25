@@ -5,39 +5,89 @@
 .flight-filters {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
-  padding: 1rem 1.25rem;
+  gap: 0;
   background: var(--fs-surface);
   border: 1px solid var(--fs-border);
-  border-radius: var(--fs-radius);
+  border-radius: var(--fs-radius-xl);
   box-shadow: var(--fs-card-shadow);
+  overflow: hidden;
+}
+
+/* ─── Header ─── */
+.flight-filters__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--fs-border);
 }
 
 .flight-filters__title {
   margin: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--fs-text);
+
+  svg {
+    color: var(--fs-muted);
+  }
 }
 
-.flight-filters__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 1.25rem;
+.flight-filters__clear {
+  background: none;
+  border: none;
+  font-family: var(--fs-font);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--fs-primary);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--fs-radius);
+  transition: background 0.15s ease;
+
+  &:hover {
+    background: var(--fs-primary-lighter);
+  }
 }
 
-.flight-filters__field {
+/* ─── Sections ─── */
+.flight-filters__section {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.625rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--fs-border);
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.flight-filters__section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .flight-filters__label {
-  font-size: 0.72rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--fs-text);
+  letter-spacing: 0.01em;
+}
+
+.flight-filters__price-display {
+  font-size: 0.8rem;
   font-weight: 600;
   color: var(--fs-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+}
+
+/* ─── Slider ─── */
+.flight-filters__slider-track {
+  padding: 0.125rem 0;
 }
 
 .flight-filters__slider {
@@ -45,41 +95,105 @@
   accent-color: var(--fs-primary);
 }
 
-.flight-filters__value {
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--fs-primary);
-  text-align: right;
-}
-
+/* ─── Options ─── */
 .flight-filters__options {
   display: flex;
   flex-direction: column;
-  gap: 0.375rem;
-  max-height: 140px;
-  overflow-y: auto;
+  gap: 0.5rem;
 }
 
 .flight-filters__options--airlines {
-  max-height: 170px;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--fs-border);
+    border-radius: 2px;
+  }
 }
 
+/* ─── Custom Checkbox ─── */
 .flight-filters__checkbox-label {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--fs-text);
   cursor: pointer;
 
   input[type='checkbox'] {
-    accent-color: var(--fs-primary);
-    width: 1.05rem;
-    height: 1.05rem;
-    cursor: pointer;
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+  }
+}
+
+.flight-filters__checkbox-custom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid var(--fs-border);
+  border-radius: 0.25rem;
+  background: #fff;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+
+  input:checked + & {
+    background: var(--fs-primary);
+    border-color: var(--fs-primary);
+
+    &::after {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 8px;
+      border: solid #fff;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) translate(-1px, -1px);
+    }
   }
 }
 
 .flight-filters__option-text {
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+
+/* ─── Search box ─── */
+.flight-filters__search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.65rem;
+  border: 1px solid var(--fs-border);
+  border-radius: var(--fs-radius);
+  background: #f9fafb;
+
+  svg {
+    color: var(--fs-muted);
+    flex-shrink: 0;
+  }
+}
+
+.flight-filters__search-input {
+  border: none;
+  background: transparent;
+  font: inherit;
   font-size: 0.8rem;
+  color: var(--fs-text);
+  width: 100%;
+  outline: none;
+
+  &::placeholder {
+    color: #9ca3af;
+  }
 }

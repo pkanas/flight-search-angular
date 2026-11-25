@@ -1,7 +1,14 @@
 <form class="flight-search-form" [formGroup]="searchForm" (ngSubmit)="onSearch()" aria-label="Flight search">
+  <!-- Search fields row -->
   <div class="flight-search-form__grid">
     <div class="flight-search-form__field">
-      <label for="origin" class="flight-search-form__label">From</label>
+      <label for="origin" class="flight-search-form__label">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        From
+      </label>
       <input
         id="origin"
         class="flight-search-form__input"
@@ -17,7 +24,13 @@
     </div>
 
     <div class="flight-search-form__field">
-      <label for="destination" class="flight-search-form__label">To</label>
+      <label for="destination" class="flight-search-form__label">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a2 2 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+        </svg>
+        To
+      </label>
       <input
         id="destination"
         class="flight-search-form__input"
@@ -33,7 +46,12 @@
     </div>
 
     <div class="flight-search-form__field">
-      <label for="departureDate" class="flight-search-form__label">Departure date</label>
+      <label for="departureDate" class="flight-search-form__label">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        Departure Date
+      </label>
       <input
         id="departureDate"
         class="flight-search-form__input"
@@ -47,7 +65,12 @@
     </div>
 
     <div class="flight-search-form__field">
-      <label for="returnDate" class="flight-search-form__label">Return date (optional)</label>
+      <label for="returnDate" class="flight-search-form__label">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+        </svg>
+        Return Date
+      </label>
       <input
         id="returnDate"
         class="flight-search-form__input"
@@ -58,7 +81,12 @@
     </div>
 
     <div class="flight-search-form__field">
-      <label for="passengers" class="flight-search-form__label">Number of passengers</label>
+      <label for="passengers" class="flight-search-form__label">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
+        </svg>
+        Passengers
+      </label>
       <input
         id="passengers"
         class="flight-search-form__input"
@@ -84,7 +112,7 @@
         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
       />
     </svg>
-    {{ searching() ? 'Searching…' : 'Search flights' }}
+    {{ searching() ? 'Searching…' : 'Search Flights' }}
   </button>
 
   @if (searchForm.hasError('returnBeforeDeparture')) {

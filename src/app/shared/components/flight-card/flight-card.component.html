@@ -6,19 +6,50 @@
   (keydown.enter)="onSelect()"
   (keydown.space)="onSelect()"
 >
-  <header class="flight-card__header">
-    <span class="flight-card__airline">{{ flight().airline }}</span>
-    <span class="flight-card__price">{{ flight().price | currency:flight().currency }}</span>
-  </header>
-  <div class="flight-card__route">
-    <span class="flight-card__logo">{{ logoCode }}</span>
+  <!-- Airline info -->
+  <div class="flight-card__airline-col">
+    <span class="flight-card__logo" [style.background]="airlineColor">{{ logoCode }}</span>
+    <div class="flight-card__airline-info">
+      <span class="flight-card__airline">{{ flight().airline }}</span>
+      <span class="flight-card__flight-number">{{ flight().flightNumber }}</span>
+    </div>
+  </div>
+
+  <!-- Departure -->
+  <div class="flight-card__point">
     <span class="flight-card__code">{{ flight().origin }}</span>
-    <span class="flight-card__arrow">→</span>
-    <span class="flight-card__code">{{ flight().destination }}</span>
+    <span class="flight-card__time">{{ flight().departureTime }}</span>
   </div>
-  <div class="flight-card__details">
-    <span class="flight-card__time">{{ flight().departureTime }} – {{ flight().arrivalTime }}</span>
+
+  <!-- Route visualization -->
+  <div class="flight-card__route">
     <span class="flight-card__duration">{{ flight().durationMinutes | duration }}</span>
-    <span class="flight-card__stops">Stops: {{ flight().stops }}</span>
+    <div class="flight-card__route-line">
+      <span class="flight-card__route-dot"></span>
+      <span class="flight-card__route-dash"></span>
+      <svg class="flight-card__route-plane" viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+        <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
+      </svg>
+      <span class="flight-card__route-dash"></span>
+      <span class="flight-card__route-dot"></span>
+    </div>
+    <span class="flight-card__stops-label">{{ flight().stops === 0 ? 'Non-stop' : flight().stops + ' Stop' + (flight().stops > 1 ? 's' : '') }}</span>
   </div>
+
+  <!-- Arrival -->
+  <div class="flight-card__point">
+    <span class="flight-card__code">{{ flight().destination }}</span>
+    <span class="flight-card__time">{{ flight().arrivalTime }}</span>
+  </div>
+
+  <!-- Price -->
+  <div class="flight-card__price-col">
+    <span class="flight-card__price">{{ flight().price | currency:flight().currency:'symbol':'1.0-0' }}</span>
+    <span class="flight-card__price-note">per passenger</span>
+  </div>
+
+  <!-- Action -->
+  <button class="flight-card__action" type="button" (click)="onSelect(); $event.stopPropagation()">
+    View Deal
+  </button>
 </div>

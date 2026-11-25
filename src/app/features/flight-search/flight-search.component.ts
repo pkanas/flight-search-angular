@@ -21,7 +21,7 @@ import {
   Subject,
   switchMap,
 } from 'rxjs';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 import { Flight, FlightFilters } from '../../shared/models/flight.model';
 import { FlightSearchParams, FlightSearchState } from './models/flight-search.model';
@@ -77,24 +77,35 @@ export class FlightSearchComponent {
     shareReplay({ bufferSize: 1, refCount: true })
   );
 
-  /** Combines the search state with the current filters into a stable signal. */
-  readonly state = toSignal(
-    this.searchState$.pipe(
-      combineLatestWith(toObservable(this.filters)),
-      map(([searchState, filters]) => ({
-        ...searchState,
-        flights: applyFilters(searchState.flights, filters),
-      }))
-    ),
-    {
-      initialValue: {
-        flights: [] as Flight[],
+  /** The current UI state: search results, loading, error + last search params. */
+  readonly state = signal<FlightSearchState>({
+    flights: [],
+    loading: false,
+    error: null,
+    searchParams: null,
+  });
+
+  constructor() {
+    // Restore the previous search results when the user navigates back from the
+    // flight details page: the search page component is destroyed there, and
+    // the cached data in the service survives the navigation.
+    const cached = this.flightSearchService.getCachedSearch();
+    if (cached) {
+      this.state.set({
+        flights: applyFilters(cached.flights, this.filters()),
         loading: false,
-        error: null as string | null,
-        searchParams: null as FlightSearchParams | null,
-      },
+        error: null,
+        searchParams: cached.params,
+      });
     }
-  );
+
+    // Forward the search stream state into the UI signal.
+    this.searchState$
+      .pipe(combineLatestWith(toObservable(this.filters)))
+      .subscribe(([searchState, filters]) => {
+        this.state.set({ ...searchState, flights: applyFilters(searchState.flights, filters) });
+      });
+  }
 
   protected onSearchRequested(params: FlightSearchParams): void {
     this.searchTriggers$.next(params);

@@ -1,6 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { FlightFilters } from '../../../../shared/models/flight.model';
 import { AIRLINES } from '../../data/airlines';
+import { DEFAULT_FILTERS } from '../../../../shared/utils/filters';
 
 /**
  * Filters applied to the search results: price range, number of stops and
@@ -20,6 +21,34 @@ export class FlightFiltersComponent {
   protected readonly stopOptions = [0, 1, 2, 3];
   /** airlines selectable in the UI (from the mock data). */
   protected readonly airlines = AIRLINES;
+
+  /** Labels for stop options matching the reference design. */
+  protected readonly stopLabels: Record<number, string> = {
+    0: 'Non-stop',
+    1: '1 Stop',
+    2: '2+ Stops',
+    3: '3+ Stops',
+  };
+
+  /** Search term for airline filter. */
+  protected airlineSearchTerm = '';
+
+  /** Airlines filtered by the search term. */
+  protected get filteredAirlines(): string[] {
+    if (!this.airlineSearchTerm) {
+      return this.airlines;
+    }
+    const term = this.airlineSearchTerm.toLowerCase();
+    return this.airlines.filter((a) => a.toLowerCase().includes(term));
+  }
+
+  protected onAirlineSearch(event: Event): void {
+    this.airlineSearchTerm = (event.target as HTMLInputElement).value;
+  }
+
+  protected onClearAll(): void {
+    this.filtersChange.emit({ ...DEFAULT_FILTERS });
+  }
 
   protected onPriceMin(event: Event): void {
     this.emit({ priceMin: this.numberInput(event) });

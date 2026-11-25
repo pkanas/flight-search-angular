@@ -1,21 +1,113 @@
 :host {
   display: block;
+  width: 100%;
 }
 
 .flight-search-page {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
-  padding: 2rem 1.5rem 2.25rem;
-  max-width: 960px;
+  gap: 1.5rem;
+  max-width: 1200px;
   margin: 0 auto;
   width: 100%;
+  padding: 0 1.5rem 2rem;
 }
 
-.flight-search-page__title {
-  margin: 0;
-  font-size: 2.25rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: var(--fs-text);
+/* ─── Hero Banner ─── */
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.5rem 3rem;
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 50%, #60a5fa 100%);
+  border-radius: 0 0 var(--fs-radius-xl) var(--fs-radius-xl);
+  color: #fff;
+  overflow: hidden;
+  min-height: 160px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -10%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__title {
+    margin: 0 0 0.5rem;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 400;
+  }
+
+  &__illustration {
+    position: relative;
+    z-index: 1;
+    width: 200px;
+    flex-shrink: 0;
+
+    svg {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+/* ─── Two-column results layout ─── */
+.flight-search-page__results-area {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.flight-search-page__sidebar {
+  position: sticky;
+  top: 80px;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .flight-search-page {
+    padding: 0 1rem 2rem;
+  }
+
+  .hero {
+    padding: 2rem 1.5rem;
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+
+    &__title {
+      font-size: 1.5rem;
+    }
+
+    &__illustration {
+      width: 140px;
+    }
+  }
+
+  .flight-search-page__results-area {
+    grid-template-columns: 1fr;
+  }
+
+  .flight-search-page__sidebar {
+    position: static;
+  }
 }
