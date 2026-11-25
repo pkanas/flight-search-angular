@@ -2,52 +2,84 @@
   display: block;
 }
 
-.flight-detail {
+.flight-detail-page {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  padding: 1.25rem;
+  padding: 1.5rem;
+  max-width: 720px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.flight-detail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--fs-muted);
+  font-size: 0.85rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--fs-radius);
+  text-decoration: none;
+  transition: color 0.15s ease;
+
+  &:hover,
+  &:focus-visible {
+    color: var(--fs-text);
+  }
+}
+
+.flight-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.75rem;
   background: var(--fs-surface);
   border: 1px solid var(--fs-border);
   border-radius: var(--fs-radius);
   box-shadow: var(--fs-card-shadow);
-  max-width: 720px;
 }
 
 .flight-detail__header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .flight-detail__airline {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
   color: var(--fs-text);
 }
 
 .flight-detail__number {
+  font-size: 1rem;
   font-weight: 600;
   color: var(--fs-muted);
 }
 
 .flight-detail__price {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 700;
   color: var(--fs-primary);
+  white-space: nowrap;
 }
 
 .flight-detail__route {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.6rem;
   font-size: 1.25rem;
   font-weight: 600;
 }
 
 .flight-detail__code {
-  font-family: ui-monospace, SFMono-Regular, monospace;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 1.1rem;
 }
 
 .flight-detail__arrow {
@@ -57,9 +89,15 @@
 .flight-detail__times {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
+  gap: 1.25rem;
   font-size: 0.9rem;
   color: var(--fs-text);
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
 }
 
 .flight-detail__stop-details {
@@ -91,4 +129,13 @@
   margin: 0;
   font-weight: 600;
   color: var(--fs-text);
+}
+
+.flight-detail__error {
+  margin: 0;
+  padding: 1rem;
+  color: var(--fs-error);
+  background: var(--fs-surface);
+  border: 1px solid var(--fs-border);
+  border-radius: var(--fs-radius);
 }

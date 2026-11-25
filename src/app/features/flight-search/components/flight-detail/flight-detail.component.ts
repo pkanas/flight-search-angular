@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
@@ -22,6 +22,7 @@ import { FlightSearchService } from '../../services/flight-search.service';
 export class FlightDetailComponent {
   private readonly flightSearchService = inject(FlightSearchService);
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   readonly flight = signal<Flight | null>(null);
   readonly loading = signal(true);
@@ -50,5 +51,10 @@ export class FlightDetailComponent {
   /** The loaded flight; only read when not loading and without an error. */
   protected detail(): Flight {
     return this.flight() as Flight;
+  }
+
+  /** Navigates back to the flight search page. */
+  protected goBack(): void {
+    this.router.navigate([`/search`]);
   }
 }
