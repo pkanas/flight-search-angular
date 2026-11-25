@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, effect, inject, input, output } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   AbstractControl,
@@ -41,6 +41,12 @@ export class FlightSearchFormComponent {
   readonly searching = input(false);
   readonly searchRequested = output<FlightSearchParams>();
 
+  /**
+   * When provided, the form is patched with these params. Used to restore the
+   * form when the user returns from the flight details page.
+   */
+  readonly restoredParams = input<FlightSearchParams | null>(null);
+
   readonly searchForm: FormGroup = this.formBuilder.group(
     {
       origin: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(4)]],
@@ -51,6 +57,22 @@ export class FlightSearchFormComponent {
     },
     { validators: [returnDateAfterDeparture] },
   );
+
+  constructor() {
+    // Patch the form when the parent provides restored search params.
+    effect(() => {
+      const params = this.restoredParams();
+      if (params) {
+        this.searchForm.patchValue({
+          origin: params.origin,
+          destination: params.destination,
+          departureDate: params.departureDate,
+          passengers: params.passengers,
+          ...(params.returnDate ? { returnDate: params.returnDate } : {}),
+        });
+      }
+    });
+  }
 
   private readonly labels: Record<string, string> = {
     origin: 'From',

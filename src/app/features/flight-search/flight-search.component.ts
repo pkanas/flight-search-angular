@@ -85,6 +85,9 @@ export class FlightSearchComponent {
     searchParams: null,
   });
 
+  /** Search params used to patch the form when returning from the details page. */
+  readonly restoredParams = signal<FlightSearchParams | null>(null);
+
   constructor() {
     // Restore the previous search results when the user navigates back from the
     // flight details page: the search page component is destroyed there, and
@@ -97,6 +100,7 @@ export class FlightSearchComponent {
         error: null,
         searchParams: cached.params,
       });
+      this.restoredParams.set(cached.params);
     }
 
     // Forward the search stream state into the UI signal.
