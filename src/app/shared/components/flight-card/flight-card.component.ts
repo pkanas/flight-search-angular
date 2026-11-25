@@ -19,6 +19,16 @@ export class FlightCardComponent {
   /** Emitted when the user clicks the card. */
   readonly flightSelected = output<Flight>();
 
+  /** Two-letter chip shown on the card (airline name initials). */
+  protected get logoCode(): string {
+    return this.flight()
+      .airline.split(/\s+/)
+      .slice(0, 2)
+      .map((part) => part[0])
+      .join('')
+      .toUpperCase();
+  }
+
   protected onSelect(): void {
     this.flightSelected.emit(this.flight());
   }

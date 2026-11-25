@@ -6,6 +6,7 @@
       <label for="price-min" class="flight-filters__label">Min price</label>
       <input
         id="price-min"
+        class="flight-filters__slider"
         type="range"
         min="0"
         max="1000"
@@ -21,6 +22,7 @@
       <label for="price-max" class="flight-filters__label">Max price</label>
       <input
         id="price-max"
+        class="flight-filters__slider"
         type="range"
         min="0"
         max="1000"
@@ -34,7 +36,7 @@
 
     <div class="flight-filters__field">
       <span class="flight-filters__label">Number of stops</span>
-      <div class="flight-filters__checkboxes">
+      <div class="flight-filters__options">
         @for (stops of stopOptions; track stops) {
           <label class="flight-filters__checkbox-label">
             <input
@@ -42,7 +44,7 @@
               [checked]="filters().stops.includes(stops)"
               (change)="onStopsToggle(stops, $any($event.target).checked)"
             />
-            {{ stops }} stop(s)
+            <span class="flight-filters__option-text">{{ stops }} stop(s)</span>
           </label>
         }
       </div>
@@ -50,7 +52,7 @@
 
     <div class="flight-filters__field">
       <span class="flight-filters__label">Airline</span>
-      <div class="flight-filters__checkboxes">
+      <div class="flight-filters__options flight-filters__options--airlines">
         @for (airline of airlines; track airline) {
           <label class="flight-filters__checkbox-label">
             <input
@@ -58,7 +60,7 @@
               [checked]="filters().airlines.includes(airline)"
               (change)="onAirlineToggle(airline, $any($event.target).checked)"
             />
-            {{ airline }}
+            <span class="flight-filters__option-text">{{ airline }}</span>
           </label>
         }
       </div>

@@ -1,21 +1,30 @@
-/* Global design tokens for the flight search app. */
+/* Global design tokens for the flight search app — modern professional look. */
 :root {
   --fs-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --fs-radius: 0.75rem;
+  --fs-radius: 0.625rem;
+  --fs-radius-lg: 1.25rem;
   --fs-primary: #2563eb;
   --fs-primary-dark: #1d4ed8;
-  --fs-text: #1f2937;
+  --fs-text: #111827;
   --fs-muted: #6b7280;
   --fs-border: #e5e7eb;
   --fs-error: #dc2626;
   --fs-surface: #ffffff;
-  --fs-card-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 4px 20px rgba(16, 24, 40, 0.06);
-  --fs-card-shadow-hover: 0 10px 20px rgba(16, 24, 40, 0.1), 0 4px 8px rgba(16, 24, 40, 0.06);
+  --fs-bg: #f9fafb;
+  --fs-card-shadow: 0 1px 3px rgba(17, 24, 39, 0.04), 0 8px 20px rgba(17, 24, 39, 0.06);
+  --fs-focus-ring: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
 body {
   margin: 0;
   font-family: var(--fs-font);
   color: var(--fs-text);
-  background: #f1f3f5;
+  background: var(--fs-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
 }

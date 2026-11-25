@@ -9,18 +9,33 @@
 }
 
 .flight-search-results__header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
   padding: 0.5rem 0.25rem;
+  border-bottom: 1px solid var(--fs-border);
+  padding-bottom: 0.75rem;
 }
 
 .flight-search-results__count {
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  color: var(--fs-muted);
+  color: var(--fs-text);
 }
 
 .flight-search-results__context {
-  font-weight: 400;
-  margin-left: 0.25rem;
+  font-size: 0.85rem;
+  color: var(--fs-muted);
+}
+
+.flight-search-results__loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2.5rem;
+  color: var(--fs-muted);
 }
 
 .flight-search-results__list {
@@ -33,13 +48,17 @@
 .flight-search-results__error,
 .flight-search-results__empty {
   margin: 0;
-  padding: 1rem;
-  color: var(--fs-error);
-  background: var(--fs-surface);
-  border: 1px solid var(--fs-border);
+  padding: 1.25rem;
   border-radius: var(--fs-radius);
+  text-align: center;
+  color: var(--fs-muted);
+}
+
+.flight-search-results__error {
+  color: var(--fs-error);
 }
 
 .flight-search-results__empty {
-  color: var(--fs-muted);
+  border: 1px solid var(--fs-border);
+  background: var(--fs-surface);
 }

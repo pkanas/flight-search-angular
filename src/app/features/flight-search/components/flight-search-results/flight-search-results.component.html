@@ -1,16 +1,19 @@
 <section class="flight-search-results" aria-label="Flight search results">
   @if (loading()) {
-    <app-loader />
+    <div class="flight-search-results__loading">
+      <app-loader />
+      <span>Searching flights…</span>
+    </div>
   } @else if (error()) {
     <p class="flight-search-results__error" role="alert">{{ error() }}</p>
   } @else if (flights().length > 0) {
     <div class="flight-search-results__header">
       <span class="flight-search-results__count">
-        {{ flights().length }} flight(s) found
-        @if (searchContext) {
-          <span class="flight-search-results__context">{{ searchContext }}</span>
-        }
+        {{ flights().length }} flight{{ flights().length !== 1 ? 's' : '' }} found
       </span>
+      @if (searchContext) {
+        <span class="flight-search-results__context">{{ searchContext }}</span>
+      }
     </div>
     <div class="flight-search-results__list" role="list">
       @for (flight of flights(); track flight.id) {
@@ -18,6 +21,8 @@
       }
     </div>
   } @else {
-    <p class="flight-search-results__empty">No flights found for these dates and filters.</p>
+    <p class="flight-search-results__empty">
+      No flights found for these dates and filters. Try a different destination or adjust your search.
+    </p>
   }
 </section>

@@ -5,17 +5,17 @@
 .flight-search-page {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  padding: 2.25rem 1.5rem 1.5rem;
-  max-width: 920px;
+  gap: 1.75rem;
+  padding: 2rem 1.5rem 2.25rem;
+  max-width: 960px;
   margin: 0 auto;
   width: 100%;
 }
 
 .flight-search-page__title {
   margin: 0;
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 2.25rem;
+  font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--fs-text);
 }
